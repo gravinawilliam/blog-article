@@ -41,8 +41,6 @@ export class CreateArticleValidator implements ICreateArticleValidator {
     if (topicExists.isLeft()) return left(topicExists.value);
     const topics = topicExists.value;
 
-    console.log(topicExists);
-
     return right({
       userId,
       topics,
