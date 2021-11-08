@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  blog-article:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    entrypoint: ./entrypoint.sh
+    container_name: blog-article
+    image: blog-article:latest
+    environment:
+      SONAR_PASSWORD: ${SONAR_PASSWORD}
+      SONAR_LOGIN: ${SONAR_LOGIN}
+      SONAR_PROJECT_KEY: ${SONAR_PROJECT_KEY}
+      SONAR_SERVER_URL: ${SONAR_SERVER_URL}
+      BLOG_ARTICLE_PORT: ${BLOG_ARTICLE_PORT}
+      NODE_ENV: ${NODE_ENV}
+      SENTRY_DSN: ${SENTRY_DSN}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN}
+      JWT_ALGORITHM: ${JWT_ALGORITHM}
+      JWT_ISSUER: ${JWT_ISSUER}
+      URL_BASE_DATA_REPLICATION: ${URL_BASE_DATA_REPLICATION}
+      DB_DEFAULT_TYPE: ${DB_DEFAULT_TYPE}
+      DB_DEFAULT_HOST: ${DB_DEFAULT_HOST}
+      DB_DEFAULT_PORT: ${DB_DEFAULT_PORT}
+      DB_DEFAULT_USERNAME: ${DB_DEFAULT_USERNAME}
+      DB_DEFAULT_PASSWORD: ${DB_DEFAULT_PASSWORD}
+      DB_DEFAULT_DATABASE: ${DB_DEFAULT_DATABASE}
+    ports:
+      - "${BLOG_ARTICLE_PORT}:${BLOG_ARTICLE_PORT}"
+    networks:
+      - blog-net
+    volumes:
+      - .:/home/node/app/blog-article
+
+networks:
+  blog-net:
+    external: true
