@@ -11,8 +11,11 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "incremental": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "paths": {
       "@application/*":["./src/application/*"],
       "@dtos/*":["./src/domain/dtos/*"],
