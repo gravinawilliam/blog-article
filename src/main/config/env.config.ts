@@ -2,7 +2,7 @@ import 'dotenv/config';
 
 const envConfig = {
   nodeEnv: process.env.NODE_ENV,
-  port: process.env.API_PORT || 3000,
+  port: process.env.BLOG_ARTICLE_PORT,
   dataBaseDefault: {
     type: process.env.DB_DEFAULT_TYPE,
     host: process.env.DB_DEFAULT_HOST,
@@ -10,6 +10,20 @@ const envConfig = {
     username: process.env.DB_DEFAULT_USERNAME,
     password: process.env.DB_DEFAULT_PASSWORD,
     database: process.env.DB_DEFAULT_DATABASE,
+  },
+  sentry: {
+    dsn: process.env.SENTRY_DSN,
+  },
+  url: {
+    internalMicroServices: {
+      dataReplication: process.env.URL_BASE_DATA_REPLICATION,
+    },
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN,
+    algorithm: process.env.JWT_ALGORITHM,
+    issuer: process.env.JWT_ISSUER,
   },
 };
 
