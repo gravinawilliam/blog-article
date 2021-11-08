@@ -7,7 +7,6 @@ export class ListCoursesUseCase implements IListCoursesUseCase {
   constructor(private readonly coursesRepository: IFindAllCoursesRepository) {}
 
   public async execute(): Promise<CourseModel[]> {
-    const courses = await this.coursesRepository.findAll();
-    return courses;
+    return await this.coursesRepository.findAll();
   }
 }
