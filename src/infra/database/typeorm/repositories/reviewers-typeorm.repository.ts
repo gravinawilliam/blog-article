@@ -1,5 +1,7 @@
 import { getRepository, Repository } from 'typeorm';
 
+import { statusConfig } from '@application/configs/status.config';
+
 import { ICreateReviewerRepository } from '@domain/repositories/reviewers/create-reviewer.repository';
 import { IFindByReviewingArticlesReviewersRepository } from '@domain/repositories/reviewers/find-by-reviewing-articles.repository';
 import { IFindByUserIdReviewersRepository } from '@domain/repositories/reviewers/find-by-user-id-reviewers.repository';
@@ -22,10 +24,15 @@ export default class ReviewersTypeormRepository
     this.ormRepository = getRepository(ReviewerEntity);
   }
 
-  public async create(
-    params: CreateReviewerRepositoryDTO.Params,
-  ): Promise<CreateReviewerRepositoryDTO.Result> {
-    const reviewerCreated = this.ormRepository.create(params);
+  public async create({
+    reviewerStatus,
+    userId,
+  }: CreateReviewerRepositoryDTO.Params): Promise<CreateReviewerRepositoryDTO.Result> {
+    const reviewerCreated = this.ormRepository.create({
+      id: userId,
+      userId,
+      reviewerStatus,
+    });
     return await this.ormRepository.save(reviewerCreated);
   }
 
@@ -41,6 +48,9 @@ export default class ReviewersTypeormRepository
     return await this.ormRepository.findOne({
       order: {
         reviewingArticles: 'ASC',
+      },
+      where: {
+        reviewerStatus: statusConfig.reviewer.approved,
       },
     });
   }
