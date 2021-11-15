@@ -4,7 +4,7 @@ import { CreateArticleUseCase } from '@application/use-cases/articles/create-art
 import { RequiredFieldsValidator } from '@application/validators/_shared/required-fields.validator';
 import { CreateArticleValidator } from '@application/validators/articles/create-article.validator';
 
-import { ArticlesDataReplication } from '@infra/_providers/data-replications/articles/articles-data-replication.provider';
+import { ArticleDataReplication } from '@infra/_providers/data-replications/articles/article-data-replication.provider';
 import { TokenJwtProvider } from '@infra/_providers/token-jwt/token-jwt.provider';
 import ArticlesTypeormRepository from '@infra/database/typeorm/repositories/articles-typeorm.repository';
 import ReviewersTypeormRepository from '@infra/database/typeorm/repositories/reviewers-typeorm.repository';
@@ -23,7 +23,7 @@ export const makeCreateArticleController = (): IController => {
   const createArticleBeforeUseCaseTransformer =
     new CreateArticleBeforeUseCaseTransformer(reviewersRepository);
   const httpRequest = new AxiosHttpProvider();
-  const dataReplications = new ArticlesDataReplication(httpRequest);
+  const dataReplications = new ArticleDataReplication(httpRequest);
   const createArticleUseCase = new CreateArticleUseCase(
     articlesRepository,
     dataReplications,
