@@ -16,10 +16,9 @@ import { TopicsModule } from '../topics/topics.module';
 @Module({
   imports: [
     SentryModule.forRoot({
-      debug: true,
       dsn: envConfig.sentry.dsn,
-      logLevel: LogLevel.Debug,
-      environment: 'development',
+      logLevel: LogLevel.Verbose,
+      environment: envConfig.sentry.environment,
       tracesSampleRate: 1.0,
     }),
     ConfigModule.forRoot(),
