@@ -27,24 +27,20 @@ export class ArticleEntity extends BaseEntity implements ArticleModel {
   thumbnail: string;
 
   @Column()
-  authorId: string;
-
-  @Column()
-  reviewerId: string;
-
-  @Column()
   status: string;
 
   @Column()
   description: string;
 
-  @ManyToMany(() => TopicEntity, {})
-  @JoinTable({
-    name: 'articles_topics',
-    joinColumns: [{ name: 'article_id' }],
-    inverseJoinColumns: [{ name: 'topic_id' }],
-  })
-  topics: TopicModel[];
+  @Column()
+  authorId: string;
+
+  @Column()
+  reviewerId: string;
+
+  @ManyToOne(() => UserEntity, (user) => user.articles)
+  @JoinColumn({ name: 'reviewer_id', referencedColumnName: 'id' })
+  reviewer: UserModel;
 
   @ManyToOne(() => UserEntity, (user) => user.articles, {
     eager: true,
@@ -52,7 +48,13 @@ export class ArticleEntity extends BaseEntity implements ArticleModel {
   @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
   author: UserModel;
 
-  @ManyToOne(() => UserEntity, (user) => user.articles)
-  @JoinColumn({ name: 'reviewer_id', referencedColumnName: 'id' })
-  reviewer: UserModel;
+  @ManyToMany(() => TopicEntity, {
+    eager: true,
+  })
+  @JoinTable({
+    name: 'articles_topics',
+    joinColumns: [{ name: 'article_id' }],
+    inverseJoinColumns: [{ name: 'topic_id' }],
+  })
+  topics: TopicModel[];
 }

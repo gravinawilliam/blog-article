@@ -1,4 +1,5 @@
 import { BaseModel } from './_base.model';
+import { TopicModel } from './topic.model';
 import { UserModel } from './user.model';
 
 export class ArticleModel extends BaseModel {
@@ -19,4 +20,6 @@ export class ArticleModel extends BaseModel {
   reviewer: UserModel;
 
   author: UserModel;
+
+  topics: TopicModel[];
 }
