@@ -1,6 +1,6 @@
 import { statusConfig } from '@application/configs/status.config';
 
-import { ICreateArticleDataReplication } from '@domain/providers/data-replications/users/create-article-data-replication.provider';
+import { IArticleDataReplication } from '@domain/providers/data-replications/users/create-article-data-replication.provider';
 import { ICreateArticleRepository } from '@domain/repositories/articles/create-article.repository';
 import { ICreateArticleUseCase } from '@domain/use-cases/articles/create-article.usecase';
 
@@ -12,7 +12,7 @@ import {
 export class CreateArticleUseCase implements ICreateArticleUseCase {
   constructor(
     private readonly articlesRepository: ICreateArticleRepository,
-    private readonly dataReplications: ICreateArticleDataReplication,
+    private readonly dataReplications: IArticleDataReplication,
   ) {}
 
   public async execute({
@@ -31,7 +31,10 @@ export class CreateArticleUseCase implements ICreateArticleUseCase {
       description,
     });
 
-    this.dataReplications.createArticle(createdArticle);
+    this.dataReplications.article({
+      article: createdArticle,
+      type: 'create',
+    });
 
     return {
       id: createdArticle.id,
