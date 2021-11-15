@@ -13,6 +13,10 @@ const envConfig = {
   },
   sentry: {
     dsn: process.env.SENTRY_DSN,
+    environment: process.env.NODE_ENV === 'PROD' ? 'production' : 'development',
+  },
+  dataReplication: {
+    key: process.env.DATA_REPLICATION_KEY,
   },
   url: {
     internalMicroServices: {
