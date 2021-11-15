@@ -17,12 +17,13 @@ export class CreateArticleController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     const { authorization } = httpRequest.headers;
     // ? topic_ids = array ids topics
-    const { title, topic_ids: topicIds } = httpRequest.body;
+    const { title, topic_ids: topicIds, description } = httpRequest.body;
 
     const validatedArticle = await this.createArticleValidator.execute({
       title,
       topicIds,
       authorization,
+      description,
     });
     if (validatedArticle.isLeft()) return validatedArticle.value;
 
@@ -41,6 +42,7 @@ export class CreateArticleController implements IController {
       authorId: userId,
       reviewerId,
       topics,
+      description,
     });
 
     return created(createdArticle);

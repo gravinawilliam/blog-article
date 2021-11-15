@@ -6,8 +6,7 @@ import { makeCreateCourseController } from '@main/factories/courses/create-cours
 @Controller('/courses')
 export class CreateCourseRoute {
   @Post('/create')
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async create(@Req() request, @Res() response) {
+  create(@Req() request, @Res() response) {
     return adapterRoute(makeCreateCourseController())(request, response);
   }
 }

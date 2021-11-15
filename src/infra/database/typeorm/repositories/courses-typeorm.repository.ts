@@ -35,8 +35,7 @@ export default class CoursesTypeormRepository
   }
 
   public async findAll(): Promise<CourseModel[]> {
-    const found = await this.ormRepository.find();
-    return found;
+    return await this.ormRepository.find();
   }
 
   public async findByName(

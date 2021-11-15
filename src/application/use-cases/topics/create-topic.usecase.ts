@@ -12,11 +12,9 @@ export class CreateTopicUseCase implements ICreateTopicUseCase {
     name,
     subjectId,
   }: IRequestCreateTopicUseCaseDTO): Promise<TopicModel> {
-    const topic = await this.topicsRepository.create({
+    return await this.topicsRepository.create({
       name,
       subjectId,
     });
-
-    return topic;
   }
 }

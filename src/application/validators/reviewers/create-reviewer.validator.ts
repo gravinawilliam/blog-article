@@ -4,15 +4,11 @@ import { IFindByIdUsersRepository } from '@domain/repositories/users/find-by-id-
 import { IRequiredFieldsValidator } from '@domain/validators/_shared/required-fields.validator';
 import { ICreateReviewerValidator } from '@domain/validators/reviewers/create-reviewer.validator';
 
-import {
-  IRequestCreateReviewerValidatorDTO,
-  IResponseCreateReviewerValidatorDTO,
-} from '@dtos/reviewers/create-reviewer.dto';
+import { CreateReviewerValidatorDTO } from '@dtos/reviewers/create-reviewer.dto';
 
 import { ConflictParamError } from '@shared/errors/conflict-param.error';
 import { NotFoundModelError } from '@shared/errors/not-found-model.error';
-import { IHttpResponse } from '@shared/interfaces/http-response.interface';
-import { Either, left, right } from '@shared/utils/either';
+import { left, right } from '@shared/utils/either';
 import { conflict, badRequest } from '@shared/utils/http-response';
 
 export class CreateReviewerValidator implements ICreateReviewerValidator {
@@ -25,9 +21,7 @@ export class CreateReviewerValidator implements ICreateReviewerValidator {
 
   public async execute({
     authorization,
-  }: IRequestCreateReviewerValidatorDTO): Promise<
-    Either<IHttpResponse, IResponseCreateReviewerValidatorDTO>
-  > {
+  }: CreateReviewerValidatorDTO.Params): Promise<CreateReviewerValidatorDTO.Result> {
     const requiredFields = this.requiredFieldsValidator.execute({
       fields: [authorization],
       fieldNames: ['authorization'],

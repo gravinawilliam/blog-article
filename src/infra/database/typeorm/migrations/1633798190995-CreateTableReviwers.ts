@@ -17,8 +17,8 @@ export class CreateTablereviewers1633798190995 implements MigrationInterface {
             isUnique: true,
           },
           {
-            name: 'reviewer_status_id',
-            type: 'uuid',
+            name: 'reviewer_status',
+            type: 'varchar',
           },
           {
             name: 'created_at',
@@ -41,14 +41,6 @@ export class CreateTablereviewers1633798190995 implements MigrationInterface {
             name: 'UserIdOfUsers',
             columnNames: ['user_id'],
             referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            onDelete: 'CASCADE',
-            onUpdate: 'CASCADE',
-          },
-          {
-            name: 'reviewerStatusIdOfreviewerStatus',
-            columnNames: ['reviewer_status_id'],
-            referencedTableName: 'reviewer_status',
             referencedColumnNames: ['id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',

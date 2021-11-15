@@ -4,10 +4,10 @@ import { RequiredFieldsValidator } from '@application/validators/_shared/require
 import { VerifyPermissionValidator } from '@application/validators/_shared/verify-permission.validator';
 import { CreateTopicValidator } from '@application/validators/topics/create-topic.validator';
 
+import { TokenJwtProvider } from '@infra/_providers/token-jwt/token-jwt.provider';
 import SubjectsTypeormRepository from '@infra/database/typeorm/repositories/subjects-typeorm.repository';
 import TopicsTypeormRepository from '@infra/database/typeorm/repositories/topics-typeorm.repository';
 import UsersTypeormRepository from '@infra/database/typeorm/repositories/users-typeorm.repository';
-import { TokenJwtProvider } from '@infra/providers/token-jwt/token-jwt.provider';
 
 import { IController } from '@shared/interfaces/controller.interface';
 

@@ -17,6 +17,9 @@ yarn.lock
 .DS_Store
 .env
 
+.npm-cache/
+package-lock.json
+
 # Tests
 /coverage
 /.nyc_output

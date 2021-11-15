@@ -1,3 +1,5 @@
+import envConfig from './env.config';
+
 type Algorithm =
   | 'HS256'
   | 'HS384'
@@ -13,22 +15,16 @@ type Algorithm =
   | 'PS512'
   | 'none';
 
+const {
+  jwt: { secret, algorithm, expiresIn, issuer },
+} = envConfig;
+
 const authConfig = {
   jwt: {
-    secret:
-      process.env.JWT_APP_SECRET !== undefined
-        ? process.env.JWT_APP_SECRET
-        : '123',
-    expiresIn:
-      process.env.JWT_EXPIRES_IN !== undefined
-        ? process.env.JWT_EXPIRES_IN
-        : '99d',
-    algorithm:
-      process.env.JWT_ALGORITHM !== undefined
-        ? (process.env.JWT_ALGORITHM as Algorithm)
-        : 'HS384',
-    issuer:
-      process.env.JWT_ISSUER !== undefined ? process.env.JWT_ISSUER : '123',
+    secret,
+    expiresIn,
+    algorithm: algorithm as Algorithm,
+    issuer,
   },
 };
 

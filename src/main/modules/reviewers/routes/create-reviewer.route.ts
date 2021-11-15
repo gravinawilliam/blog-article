@@ -6,8 +6,7 @@ import { makeCreateReviewerController } from '@main/factories/reviewers/create-r
 @Controller('/reviewers')
 export class CreateReviewerRoute {
   @Post('/create')
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async create(@Req() request, @Res() response) {
+  create(@Req() request, @Res() response) {
     return adapterRoute(makeCreateReviewerController())(request, response);
   }
 }

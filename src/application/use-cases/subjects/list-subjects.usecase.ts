@@ -9,7 +9,6 @@ export class ListSubjectsUseCase implements IListSubjectsUseCase {
   ) {}
 
   public async execute(): Promise<SubjectModel[]> {
-    const subjects = await this.subjectsRepository.findAll();
-    return subjects;
+    return await this.subjectsRepository.findAll();
   }
 }

@@ -1,10 +1,8 @@
-import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn } from 'typeorm';
 
-import { ReviewerStatusModel } from '@models/reviewer-status.model';
 import { ReviewerModel } from '@models/reviewer.model';
 
 import { BaseEntity } from './_base.entity';
-import { ReviewerStatusEntity } from './reviewer-status.entity';
 import { UserEntity } from './user.entity';
 
 @Entity('reviewers')
@@ -13,7 +11,7 @@ export class ReviewerEntity extends BaseEntity implements ReviewerModel {
   userId: string;
 
   @Column()
-  reviewerStatusId: string;
+  reviewerStatus: string;
 
   @Column()
   reviewingArticles: number;
@@ -23,13 +21,4 @@ export class ReviewerEntity extends BaseEntity implements ReviewerModel {
   })
   @JoinColumn()
   user: UserEntity;
-
-  @ManyToOne(
-    () => ReviewerStatusEntity,
-    (reviewerStatus) => reviewerStatus.reviewers,
-    {
-      eager: true,
-    },
-  )
-  reviewerStatus: ReviewerStatusModel;
 }

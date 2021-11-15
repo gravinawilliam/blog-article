@@ -4,6 +4,7 @@ export type IParamsCreateArticleValidatorDTO = {
   title: string;
   topicIds: string[];
   authorization: string;
+  description: string;
 };
 
 export type IResponseCreateArticleValidatorDTO = {
@@ -15,6 +16,7 @@ export type IParamsCreateArticleUseCaseDTO = {
   authorId: string;
   reviewerId: string;
   title: string;
+  description: string;
   topics: TopicModel[];
 };
 
@@ -28,6 +30,7 @@ export type IParamsCreateArticleRepositoryDTO = {
   reviewerId: string;
   status: string;
   title: string;
+  description: string;
   topics: TopicModel[];
 };
 

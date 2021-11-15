@@ -1,7 +1,7 @@
-import { ICreateReviewerDTO } from '@dtos/reviewers/create-reviewer.dto';
-
-import { ReviewerModel } from '@models/reviewer.model';
+import { CreateReviewerRepositoryDTO } from '@dtos/reviewers/create-reviewer.dto';
 
 export interface ICreateReviewerRepository {
-  create(params: ICreateReviewerDTO): Promise<ReviewerModel>;
+  create(
+    params: CreateReviewerRepositoryDTO.Params,
+  ): Promise<CreateReviewerRepositoryDTO.Result>;
 }

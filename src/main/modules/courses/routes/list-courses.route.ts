@@ -6,8 +6,7 @@ import { makeListCoursesController } from '@main/factories/courses/list-courses.
 @Controller('/courses')
 export class ListCoursesRoute {
   @Get('/list')
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async list(@Req() request, @Res() response) {
+  list(@Req() request, @Res() response) {
     return adapterRoute(makeListCoursesController())(request, response);
   }
 }

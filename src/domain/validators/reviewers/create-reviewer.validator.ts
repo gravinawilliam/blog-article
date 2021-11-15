@@ -1,13 +1,7 @@
-import {
-  IRequestCreateReviewerValidatorDTO,
-  IResponseCreateReviewerValidatorDTO,
-} from '@dtos/reviewers/create-reviewer.dto';
-
-import { IHttpResponse } from '@shared/interfaces/http-response.interface';
-import { Either } from '@shared/utils/either';
+import { CreateReviewerValidatorDTO } from '@dtos/reviewers/create-reviewer.dto';
 
 export interface ICreateReviewerValidator {
   execute(
-    params: IRequestCreateReviewerValidatorDTO,
-  ): Promise<Either<IHttpResponse, IResponseCreateReviewerValidatorDTO>>;
+    params: CreateReviewerValidatorDTO.Params,
+  ): Promise<CreateReviewerValidatorDTO.Result>;
 }

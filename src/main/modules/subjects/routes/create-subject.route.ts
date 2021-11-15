@@ -6,8 +6,7 @@ import { makeCreateSubjectController } from '@main/factories/subjects/create-sub
 @Controller('/subjects')
 export class CreateSubjectRoute {
   @Post('/create')
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async create(@Req() request, @Res() response) {
+  create(@Req() request, @Res() response) {
     return adapterRoute(makeCreateSubjectController())(request, response);
   }
 }

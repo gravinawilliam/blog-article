@@ -35,8 +35,7 @@ export default class SubjectsTypeormRepository
   }
 
   public async findAll(): Promise<SubjectModel[]> {
-    const found = await this.ormRepository.find();
-    return found;
+    return await this.ormRepository.find();
   }
 
   public async findById(

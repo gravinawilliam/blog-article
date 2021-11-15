@@ -22,12 +22,13 @@ export class CreateArticleValidator implements ICreateArticleValidator {
     authorization,
     title,
     topicIds,
+    description,
   }: IParamsCreateArticleValidatorDTO): Promise<
     Either<IHttpResponse, IResponseCreateArticleValidatorDTO>
   > {
     const requiredFields = this.requiredFieldsValidator.execute({
-      fields: [title, authorization, topicIds],
-      fieldNames: ['title', 'authorization', 'topicIds'],
+      fields: [title, authorization, topicIds, description],
+      fieldNames: ['title', 'authorization', 'topic_ids', 'description'],
     });
     if (requiredFields.isLeft()) return left(requiredFields.value);
 

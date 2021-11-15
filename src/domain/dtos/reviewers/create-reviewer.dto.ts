@@ -1,26 +1,34 @@
-export type IRequestCreateReviewerValidatorDTO = {
-  authorization: string;
-};
+import { ReviewerModel } from '@models/reviewer.model';
 
-export type IResponseCreateReviewerValidatorDTO = {
-  userId: string;
-};
+import { IHttpResponse } from '@shared/interfaces/http-response.interface';
+import { Either } from '@shared/utils/either';
 
-export type ICreateReviewerDTO = {
-  userId: string;
-  reviewerStatusId: string;
-};
+export namespace CreateReviewerUseCaseDTO {
+  export type Params = {
+    userId: string;
+  };
 
-export type IResponseCreateReviewerTransformerDTO = {
-  reviewerStatusId: string;
-  reviewerStatusDescription: string;
-};
+  export type Result = ReviewerModel;
+}
 
-export type IRequestCreateReviewerUseCaseDTO = {
-  userId: string;
-  reviewerStatusId: string;
-};
+export namespace CreateReviewerRepositoryDTO {
+  export type Params = {
+    userId: string;
+    reviewerStatus: string;
+  };
 
-export type IResponseCreateReviewerDTO = {
-  reviewerStatus: string;
-};
+  export type Result = ReviewerModel;
+}
+
+export namespace CreateReviewerValidatorDTO {
+  export type Params = {
+    authorization: string;
+  };
+
+  export type Result = Either<
+    IHttpResponse,
+    {
+      userId: string;
+    }
+  >;
+}
