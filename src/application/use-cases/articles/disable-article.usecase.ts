@@ -1,4 +1,4 @@
-import { IArticleDataReplication } from '@domain/providers/data-replications/users/create-article-data-replication.provider';
+import { IArticleDataReplication } from '@domain/providers/data-replications/users/article-data-replication.provider';
 import { ISoftDeleteArticleRepository } from '@domain/repositories/articles/soft-delete-article.repository';
 import { IDisableArticleUseCase } from '@domain/use-cases/articles/disable-article.usecase';
 
