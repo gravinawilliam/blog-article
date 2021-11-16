@@ -1,9 +1,10 @@
 export type IStatusConfig = {
   reviewer: {
-    pending: string;
-    approved: string;
+    pending: 'PENDING';
+    approved: 'APPROVED';
   };
   article: {
-    pending: string;
+    pending: 'PENDING';
+    approved: 'APPROVED';
   };
 };

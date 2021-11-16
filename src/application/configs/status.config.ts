@@ -2,10 +2,11 @@ import { IStatusConfig } from '@domain/configs/status.config';
 
 export const statusConfig = {
   reviewer: {
-    pending: 'pending',
-    approved: 'approved',
+    pending: 'PENDING',
+    approved: 'APPROVED',
   },
   article: {
-    pending: 'pending',
+    pending: 'PENDING',
+    approved: 'APPROVED',
   },
 } as IStatusConfig;
