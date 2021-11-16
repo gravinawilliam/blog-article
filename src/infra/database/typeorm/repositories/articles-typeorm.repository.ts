@@ -1,11 +1,12 @@
 import { getRepository, Repository } from 'typeorm';
 
 import { ICreateArticleRepository } from '@domain/repositories/articles/create-article.repository';
-import { IFindAllArticlesRepository } from '@domain/repositories/articles/find-all-articles.repository';
+import { IFindAllArticlesByStatusRepository } from '@domain/repositories/articles/find-all-articles-by-status.repository';
 import { IFindByIdArticleRepository } from '@domain/repositories/articles/find-by-id-article.repository';
 import { ISoftDeleteArticleRepository } from '@domain/repositories/articles/soft-delete-article.repository';
 
 import {
+  FindAllArticlesByStatusRepositoryDTO,
   FindByIdArticleRepositoryDTO,
   SoftDeleteArticleRepositoryDTO,
 } from '@dtos/articles/articles-repository.dto';
@@ -20,7 +21,7 @@ import { ArticleEntity } from '../entities/article.entity';
 export default class ArticlesTypeormRepository
   implements
     ICreateArticleRepository,
-    IFindAllArticlesRepository,
+    IFindAllArticlesByStatusRepository,
     ISoftDeleteArticleRepository,
     IFindByIdArticleRepository
 {
@@ -37,9 +38,14 @@ export default class ArticlesTypeormRepository
     return await this.ormRepository.save(created);
   }
 
-  // TODO: implementar paginação
-  public async findAll(): Promise<ArticleModel[]> {
-    return await this.ormRepository.find();
+  public async findAllByStatus({
+    status,
+  }: FindAllArticlesByStatusRepositoryDTO.Params): FindAllArticlesByStatusRepositoryDTO.Result {
+    return await this.ormRepository.find({
+      where: {
+        status,
+      },
+    });
   }
 
   public async findById({

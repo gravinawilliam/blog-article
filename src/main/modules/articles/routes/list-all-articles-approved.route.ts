@@ -5,7 +5,7 @@ import { makeListAllArticlesController } from '@main/factories/articles/list-all
 
 @Controller('/articles')
 export class ListAllArticlesRoute {
-  @Get('/list-all')
+  @Get('/list-approved')
   list(@Req() request, @Res() response) {
     return adapterRoute(makeListAllArticlesController())(request, response);
   }

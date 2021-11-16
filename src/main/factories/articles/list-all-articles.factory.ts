@@ -1,5 +1,5 @@
-import { ListAllArticlesController } from '@application/controllers/articles/list-all-articles.controller';
-import { ListAllArticlesUseCase } from '@application/use-cases/articles/list-all-articles.usecase';
+import { ListAllArticlesApprovedController } from '@application/controllers/articles/list-all-articles-appreved.controller';
+import { ListAllArticlesByStatusUseCase } from '@application/use-cases/articles/list-all-articles-by-status.usecase';
 
 import ArticlesTypeormRepository from '@infra/database/typeorm/repositories/articles-typeorm.repository';
 
@@ -7,6 +7,8 @@ import { IController } from '@shared/interfaces/controller.interface';
 
 export const makeListAllArticlesController = (): IController => {
   const articlesRepository = new ArticlesTypeormRepository();
-  const listAllArticlesUseCase = new ListAllArticlesUseCase(articlesRepository);
-  return new ListAllArticlesController(listAllArticlesUseCase);
+  const listAllArticlesByStatusUseCase = new ListAllArticlesByStatusUseCase(
+    articlesRepository,
+  );
+  return new ListAllArticlesApprovedController(listAllArticlesByStatusUseCase);
 };

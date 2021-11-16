@@ -4,7 +4,7 @@ import { CreateArticleController } from '@application/controllers/articles/creat
 
 import { CreateArticleRoute } from './routes/create-article.route';
 import { DisableArticleRoute } from './routes/disable-article.route';
-import { ListAllArticlesRoute } from './routes/list-all-articles.route';
+import { ListAllArticlesRoute } from './routes/list-all-articles-approved.route';
 
 @Module({
   controllers: [CreateArticleRoute, ListAllArticlesRoute, DisableArticleRoute],

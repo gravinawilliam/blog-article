@@ -17,6 +17,14 @@ export namespace FindByIdArticleRepositoryDTO {
   >;
 }
 
+export namespace FindAllArticlesByStatusRepositoryDTO {
+  export type Params = {
+    status: string;
+  };
+
+  export type Result = Promise<ArticleModel[]>;
+}
+
 export namespace SoftDeleteArticleRepositoryDTO {
   export type Params = {
     article: ArticleModel;
