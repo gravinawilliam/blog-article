@@ -38,6 +38,6 @@ export const left = <F, S>(f: F): Either<F, S> => {
   return new Left<F, S>(f);
 };
 
-export const right = <F, S>(s: S): Either<F, S> => {
+export const right = <F, S>(s?: S): Either<F, S> => {
   return new Right<F, S>(s);
 };
