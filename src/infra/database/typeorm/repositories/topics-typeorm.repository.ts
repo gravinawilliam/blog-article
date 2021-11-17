@@ -3,8 +3,10 @@ import { getRepository, Repository } from 'typeorm';
 import { ICreateTopicRepository } from '@domain/repositories/topics/create-topic.repository';
 import { IFindByIdsTopicsRepository } from '@domain/repositories/topics/find-by-ids-topics.repository';
 import { IFindByNameTopicsRepository } from '@domain/repositories/topics/find-by-name-topics.repository';
+import { IFindTopicsBySubjectIdRepository } from '@domain/repositories/topics/find-topics-by-subject-id.repository';
 
 import { IRequestCreateTopicUseCaseDTO } from '@dtos/topics/create-topic.dto';
+import { FindTopicsBySubjectIdRepositoryDTO } from '@dtos/topics/topics-repository.dto';
 
 import { TopicModel } from '@models/topic.model';
 
@@ -19,7 +21,8 @@ export default class TopicsTypeormRepository
   implements
     ICreateTopicRepository,
     IFindByNameTopicsRepository,
-    IFindByIdsTopicsRepository
+    IFindByIdsTopicsRepository,
+    IFindTopicsBySubjectIdRepository
 {
   private ormRepository: Repository<TopicEntity>;
 
@@ -53,5 +56,15 @@ export default class TopicsTypeormRepository
     });
     if (found === undefined) return left(found as undefined);
     return right(found);
+  }
+
+  public async findBySubjectId({
+    subjectId,
+  }: FindTopicsBySubjectIdRepositoryDTO.Params): FindTopicsBySubjectIdRepositoryDTO.Result {
+    return await this.ormRepository.find({
+      where: {
+        subjectId,
+      },
+    });
   }
 }
