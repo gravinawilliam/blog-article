@@ -6,6 +6,7 @@ import {
   Logger,
   ExceptionFilter,
 } from '@nestjs/common';
+import * as Sentry from '@sentry/node';
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
@@ -21,8 +22,8 @@ export class AllExceptionsFilter implements ExceptionFilter {
         : HttpStatus.INTERNAL_SERVER_ERROR;
 
     this.logger.error(exception);
-    console.log('====================================');
-    console.log({
+    Logger.log('====================================');
+    Logger.log({
       error: {
         statusCode: status,
         path: request.url,
@@ -34,7 +35,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
             : exception,
       },
     });
-    console.log('====================================');
+    Logger.log('====================================');
 
     // ? Precisa ter esse response pra não ficar dando timeout
     const res =
@@ -44,6 +45,7 @@ export class AllExceptionsFilter implements ExceptionFilter {
             statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
             message: 'Internal Server Error',
           };
+    Sentry.captureException(exception);
 
     return response.status(status).json(res);
   }
