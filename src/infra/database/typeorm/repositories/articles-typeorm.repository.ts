@@ -1,13 +1,15 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Like, Repository } from 'typeorm';
 
 import { ICreateArticleRepository } from '@domain/repositories/articles/create-article.repository';
 import { IFindAllArticlesByStatusRepository } from '@domain/repositories/articles/find-all-articles-by-status.repository';
 import { IFindByIdArticleRepository } from '@domain/repositories/articles/find-by-id-article.repository';
+import { ISearchArticleRepository } from '@domain/repositories/articles/search-article.repository';
 import { ISoftDeleteArticleRepository } from '@domain/repositories/articles/soft-delete-article.repository';
 
 import {
   FindAllArticlesByStatusRepositoryDTO,
   FindByIdArticleRepositoryDTO,
+  SearchArticleRepositoryDTO,
   SoftDeleteArticleRepositoryDTO,
 } from '@dtos/articles/articles-repository.dto';
 import { IParamsCreateArticleRepositoryDTO } from '@dtos/articles/create-article.dto';
@@ -23,7 +25,8 @@ export default class ArticlesTypeormRepository
     ICreateArticleRepository,
     IFindAllArticlesByStatusRepository,
     ISoftDeleteArticleRepository,
-    IFindByIdArticleRepository
+    IFindByIdArticleRepository,
+    ISearchArticleRepository
 {
   private ormRepository: Repository<ArticleEntity>;
 
@@ -66,5 +69,17 @@ export default class ArticlesTypeormRepository
     const { article } = params;
     article.deletedAt = new Date();
     return await this.ormRepository.save(article);
+  }
+
+  public async search({
+    searching,
+  }: SearchArticleRepositoryDTO.Params): SearchArticleRepositoryDTO.Result {
+    return await this.ormRepository.find({
+      where: [
+        {
+          title: Like(`%${searching}%`),
+        },
+      ],
+    });
   }
 }

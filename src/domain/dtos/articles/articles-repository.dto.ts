@@ -32,3 +32,12 @@ export namespace SoftDeleteArticleRepositoryDTO {
 
   export type Result = Promise<ArticleModel>;
 }
+
+export namespace SearchArticleRepositoryDTO {
+  export type Params = {
+    mostLiked: boolean;
+    searching: string;
+  };
+
+  export type Result = Promise<ArticleModel[]>;
+}
