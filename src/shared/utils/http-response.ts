@@ -11,7 +11,7 @@ export const conflict = (error: Error): IHttpResponse => ({
   body: error,
 });
 
-export const created = (data: unknown): IHttpResponse => ({
+export const created = (data?: unknown): IHttpResponse => ({
   statusCode: HttpStatusCode.CREATED,
   body: data,
 });
