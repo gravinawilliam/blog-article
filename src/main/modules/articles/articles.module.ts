@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 
+import { ClapArticleRoute } from './routes/clap-article.route';
 import { CreateArticleRoute } from './routes/create-article.route';
 import { DisableArticleRoute } from './routes/disable-article.route';
 import { ListAllArticlesRoute } from './routes/list-all-articles-approved.route';
@@ -11,6 +12,7 @@ import { SearchArticlesRoute } from './routes/search-articles.route';
     ListAllArticlesRoute,
     DisableArticleRoute,
     SearchArticlesRoute,
+    ClapArticleRoute,
   ],
   providers: [],
 })

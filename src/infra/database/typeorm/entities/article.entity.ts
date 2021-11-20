@@ -38,6 +38,9 @@ export class ArticleEntity extends BaseEntity implements ArticleModel {
   @Column()
   reviewerId: string;
 
+  @Column()
+  amountClaps: number;
+
   @ManyToOne(() => UserEntity, (user) => user.articles)
   @JoinColumn({ name: 'reviewer_id', referencedColumnName: 'id' })
   reviewer: UserModel;
@@ -57,4 +60,12 @@ export class ArticleEntity extends BaseEntity implements ArticleModel {
     inverseJoinColumns: [{ name: 'topic_id' }],
   })
   topics: TopicModel[];
+
+  @ManyToMany(() => UserEntity)
+  @JoinTable({
+    name: 'articles_clap_users',
+    joinColumns: [{ name: 'article_id' }],
+    inverseJoinColumns: [{ name: 'user_id' }],
+  })
+  clapUsers: UserModel[];
 }

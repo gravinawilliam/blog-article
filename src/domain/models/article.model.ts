@@ -17,6 +17,8 @@ export class ArticleModel extends BaseModel {
 
   reviewerId: string;
 
+  amountClaps: number;
+
   reviewer: UserModel;
 
   author: UserModel;

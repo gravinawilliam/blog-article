@@ -7,11 +7,11 @@ export class SearchArticlesUseCase implements ISearchArticlesUseCase {
   constructor(private readonly articlesRepository: ISearchArticleRepository) {}
 
   public async execute({
-    mostLiked,
     searching,
+    mostClap,
   }: SearchArticlesUseCaseDTO.Params): Promise<SearchArticlesUseCaseDTO.Result> {
     const articles = await this.articlesRepository.search({
-      mostLiked,
+      mostClap,
       searching,
     });
 

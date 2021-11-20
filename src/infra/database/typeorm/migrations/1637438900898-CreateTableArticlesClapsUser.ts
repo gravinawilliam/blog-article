@@ -1,12 +1,12 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateTableArticlesTopics1634170123783
+export class CreateTableArticlesClapsUser1637438900898
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'articles_topics',
+        name: 'articles_clap_users',
         columns: [
           {
             name: 'id',
@@ -18,7 +18,7 @@ export class CreateTableArticlesTopics1634170123783
             type: 'uuid',
           },
           {
-            name: 'topic_id',
+            name: 'user_id',
             type: 'uuid',
           },
           {
@@ -47,9 +47,9 @@ export class CreateTableArticlesTopics1634170123783
             onUpdate: 'CASCADE',
           },
           {
-            name: 'TopicIdInTopics',
-            columnNames: ['topic_id'],
-            referencedTableName: 'topics',
+            name: 'UserIdInUsers',
+            columnNames: ['user_id'],
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
@@ -60,6 +60,6 @@ export class CreateTableArticlesTopics1634170123783
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('articles_topics');
+    await queryRunner.dropTable('articles_clap_users');
   }
 }

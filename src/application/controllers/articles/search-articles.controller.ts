@@ -4,6 +4,7 @@ import { ISearchArticlesValidator } from '@domain/validators/articles/search-art
 import { IController } from '@shared/interfaces/controller.interface';
 import { IHttpRequest } from '@shared/interfaces/http-request.interface';
 import { IHttpResponse } from '@shared/interfaces/http-response.interface';
+import { converterStringInBoolean } from '@shared/utils/converters';
 import { ok } from '@shared/utils/http-response';
 
 export class SearchArticlesController implements IController {
@@ -13,16 +14,18 @@ export class SearchArticlesController implements IController {
   ) {}
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const { most_liked: mostLiked, searching } = httpRequest.headers;
+    const { most_clap, searching } = httpRequest.headers;
+
+    const mostClap = converterStringInBoolean(most_clap);
 
     const validated = this.searchArticlesValidator.execute({
-      mostLiked,
+      mostClap,
       searching,
     });
     if (validated.isLeft()) return validated.value;
 
     const { articles } = await this.searchArticlesUseCase.execute({
-      mostLiked,
+      mostClap,
       searching,
     });
     return ok(articles);

@@ -11,12 +11,12 @@ export class SearchArticlesValidator implements ISearchArticlesValidator {
   ) {}
 
   public execute({
-    mostLiked,
+    mostClap,
     searching,
   }: SearchArticlesValidatorDTO.Params): SearchArticlesValidatorDTO.Result {
     const requiredFields = this.requiredFieldsValidator.execute({
-      fields: [mostLiked, searching],
-      fieldNames: ['most_liked', 'searching'],
+      fields: [mostClap, searching],
+      fieldNames: ['most_clap', 'searching'],
     });
     if (requiredFields.isLeft()) return left(requiredFields.value);
 

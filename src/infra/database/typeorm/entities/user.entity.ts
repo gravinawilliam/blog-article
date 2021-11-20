@@ -26,4 +26,12 @@ export class UserEntity extends BaseEntity implements UserModel {
 
   @OneToMany(() => ArticleEntity, (article) => article.author)
   articles: ArticleModel;
+
+  @ManyToMany(() => UserEntity)
+  @JoinTable({
+    name: 'articles_clap_users',
+    joinColumns: [{ name: 'user_id' }],
+    inverseJoinColumns: [{ name: 'article_id' }],
+  })
+  clapUsers: ArticleModel[];
 }
