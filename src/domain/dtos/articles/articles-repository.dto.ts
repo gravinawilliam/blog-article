@@ -35,9 +35,27 @@ export namespace SoftDeleteArticleRepositoryDTO {
 
 export namespace SearchArticleRepositoryDTO {
   export type Params = {
-    mostLiked: boolean;
+    mostClap: boolean;
     searching: string;
   };
 
   export type Result = Promise<ArticleModel[]>;
+}
+
+export namespace UpdateAmountClapsArticlesRepositoryDTO {
+  export type Params = {
+    articleId: string;
+    clappedHands: boolean;
+  };
+
+  export type Result = Promise<void>;
+}
+
+export namespace UpdateStatusArticleRepositoryDTO {
+  export type Params = {
+    articleId: string;
+    status: string;
+  };
+
+  export type Result = Promise<void>;
 }
