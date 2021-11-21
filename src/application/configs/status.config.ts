@@ -1,12 +1,12 @@
-import { IStatusConfig } from '@domain/configs/status.config';
-
 export const statusConfig = {
   reviewer: {
     pending: 'PENDING',
     approved: 'APPROVED',
+    disapproved: 'DISAPPROVED',
   },
   article: {
     pending: 'PENDING',
     approved: 'APPROVED',
+    disapproved: 'DISAPPROVED',
   },
-} as IStatusConfig;
+};

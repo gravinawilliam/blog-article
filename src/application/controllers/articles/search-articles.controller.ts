@@ -16,6 +16,8 @@ export class SearchArticlesController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     const { most_clap, searching } = httpRequest.headers;
 
+    console.log({ most_clap });
+
     const mostClap = converterStringInBoolean(most_clap);
 
     const validated = this.searchArticlesValidator.execute({

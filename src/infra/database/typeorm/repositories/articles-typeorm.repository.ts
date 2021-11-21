@@ -8,6 +8,7 @@ import { IFindByIdArticleRepository } from '@domain/repositories/articles/find-b
 import { ISearchArticleRepository } from '@domain/repositories/articles/search-article.repository';
 import { ISoftDeleteArticleRepository } from '@domain/repositories/articles/soft-delete-article.repository';
 import { IUpdateAmountClapsArticlesRepository } from '@domain/repositories/articles/update-amount-claps-articles.repository';
+import { IUpdateStatusArticleRepository } from '@domain/repositories/articles/update-status-article.repository';
 
 import {
   FindAllArticlesByStatusRepositoryDTO,
@@ -15,6 +16,7 @@ import {
   SearchArticleRepositoryDTO,
   SoftDeleteArticleRepositoryDTO,
   UpdateAmountClapsArticlesRepositoryDTO,
+  UpdateStatusArticleRepositoryDTO,
 } from '@dtos/articles/articles-repository.dto';
 import { IParamsCreateArticleRepositoryDTO } from '@dtos/articles/create-article.dto';
 
@@ -31,12 +33,22 @@ export default class ArticlesTypeormRepository
     ISoftDeleteArticleRepository,
     IFindByIdArticleRepository,
     ISearchArticleRepository,
-    IUpdateAmountClapsArticlesRepository
+    IUpdateAmountClapsArticlesRepository,
+    IUpdateStatusArticleRepository
 {
   private ormRepository: Repository<ArticleEntity>;
 
   constructor() {
     this.ormRepository = getRepository(ArticleEntity);
+  }
+
+  public async updateStatus({
+    articleId,
+    status,
+  }: UpdateStatusArticleRepositoryDTO.Params): UpdateStatusArticleRepositoryDTO.Result {
+    await this.ormRepository.update(articleId, {
+      status,
+    });
   }
 
   public async updateAmountClaps({
