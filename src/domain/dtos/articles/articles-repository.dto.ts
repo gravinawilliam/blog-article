@@ -50,3 +50,12 @@ export namespace UpdateAmountClapsArticlesRepositoryDTO {
 
   export type Result = Promise<void>;
 }
+
+export namespace UpdateStatusArticleRepositoryDTO {
+  export type Params = {
+    articleId: string;
+    status: string;
+  };
+
+  export type Result = Promise<void>;
+}
