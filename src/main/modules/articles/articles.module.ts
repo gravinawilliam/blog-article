@@ -6,6 +6,7 @@ import { CreateArticleRoute } from './routes/create-article.route';
 import { DisableArticleRoute } from './routes/disable-article.route';
 import { ListAllArticlesRoute } from './routes/list-all-articles-approved.route';
 import { SearchArticlesRoute } from './routes/search-articles.route';
+import { ShowArticleRoute } from './routes/show-article.route';
 
 @Module({
   controllers: [
@@ -15,6 +16,7 @@ import { SearchArticlesRoute } from './routes/search-articles.route';
     SearchArticlesRoute,
     ClapArticleRoute,
     ApproveArticleRoute,
+    ShowArticleRoute,
   ],
   providers: [],
 })
