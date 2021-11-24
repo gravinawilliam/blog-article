@@ -20,10 +20,10 @@ export class CreateReviewerController implements IController {
     });
     if (reviewerValidated.isLeft()) return reviewerValidated.value;
 
-    const { userId } = reviewerValidated.value;
+    const { user } = reviewerValidated.value;
 
     const reviewer = await this.createReviewerUseCase.execute({
-      userId,
+      user,
     });
 
     return created(reviewer);

@@ -44,7 +44,7 @@ export class CreateReviewerValidator implements ICreateReviewerValidator {
     if (userIdExists) return left(conflict(new ConflictParamError('user id')));
 
     return right({
-      userId,
+      user: userExists.value,
     });
   }
 }

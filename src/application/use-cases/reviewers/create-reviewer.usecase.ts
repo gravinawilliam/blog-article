@@ -12,17 +12,17 @@ export class CreateReviewerUseCase implements ICreateReviewerUseCase {
     private readonly dataReplications: IUserDataReplication,
   ) {}
 
-  async execute({ userId }: CreateReviewerUseCaseDTO.Params): Promise<CreateReviewerUseCaseDTO.Result> {
+  async execute({ user }: CreateReviewerUseCaseDTO.Params): Promise<CreateReviewerUseCaseDTO.Result> {
     this.dataReplications.user({
       type: 'update',
       user: {
-        id: userId,
+        ...user,
         isReviewer: true,
       },
     });
     return await this.reviewersRepository.create({
       reviewerStatus: statusConfig.article.pending,
-      userId,
+      userId: user.id,
     });
   }
 }

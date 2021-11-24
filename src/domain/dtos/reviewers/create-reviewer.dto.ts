@@ -1,11 +1,12 @@
 import { ReviewerModel } from '@models/reviewer.model';
+import { UserModel } from '@models/user.model';
 
 import { IHttpResponse } from '@shared/interfaces/http-response.interface';
 import { Either } from '@shared/utils/either';
 
 export namespace CreateReviewerUseCaseDTO {
   export type Params = {
-    userId: string;
+    user: UserModel;
   };
 
   export type Result = ReviewerModel;
@@ -28,7 +29,7 @@ export namespace CreateReviewerValidatorDTO {
   export type Result = Either<
     IHttpResponse,
     {
-      userId: string;
+      user: UserModel;
     }
   >;
 }
